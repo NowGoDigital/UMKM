@@ -1,1 +1,2000 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Warung Makan Bu Siti - Masakan Khas Sasak Lombok</title>
+    <meta name="description" content="Warung Makan Bu Siti - Masakan khas rumahan Sasak Lombok. Ayam Taliwang, Sate Rembiga, Plecing Kangkung. Pesan via WhatsApp!">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --red: #C0392B;
+            --red-light: #E74C3C;
+            --red-dark: #922B21;
+            --orange: #E67E22;
+            --orange-light: #F39C12;
+            --green: #27AE60;
+            --green-dark: #1E8449;
+            --cream: #FFF9F0;
+            --cream-dark: #FFF3E0;
+            --brown: #3E2723;
+            --brown-light: #5D4037;
+            --gold: #D4A017;
+            --gray: #78909C;
+            --white: #FFFFFF;
+            --shadow: 0 6px 24px rgba(62,39,35,0.08);
+            --shadow-lg: 0 12px 40px rgba(62,39,35,0.12);
+            --side: 20px;
+            /* Tinggi bottom nav + safe area iPhone */
+            --bottom-nav-height: 64px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Padding bawah biar konten gak ketutup bottom nav */
+            padding-bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 20px);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+        /* ===== NAVBAR (Desktop Only) ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 12px 0;
+            transition: all 0.3s;
+            display: none; /* Hidden by default on mobile */
+        }
+
+        @media (min-width: 769px) {
+            .navbar { display: block; }
+            body { padding-bottom: 0; }
+        }
+
+        .navbar.scrolled {
+            background: rgba(255,249,240,0.96);
+            backdrop-filter: blur(16px);
+            padding: 8px 0;
+            box-shadow: 0 1px 12px rgba(62,39,35,0.06);
+        }
+
+        .nav-container {
+            width: 100%;
+            padding: 0 var(--side);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 8px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 36px; height: 36px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 17px;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px; font-weight: 700;
+            color: var(--brown);
+        }
+
+        .nav-logo-text span { color: var(--red); }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brown-light);
+            font-size: 13px; font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--red); }
+
+        .nav-cta {
+            padding: 8px 18px;
+            background: var(--green);
+            color: white !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            font-size: 12px !important;
+            display: flex; align-items: center; gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover { background: var(--green-dark); }
+
+        /* Cart button in desktop nav */
+        .desktop-cart-btn {
+            position: relative;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--red);
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 12px rgba(192,57,43,0.25);
+        }
+
+        .desktop-cart-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+        .cart-count {
+            position: absolute;
+            top: -5px; right: -5px;
+            min-width: 18px; height: 18px;
+            padding: 0 5px;
+            background: var(--green);
+            border-radius: 50px;
+            font-size: 10px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cart-count.bump { animation: bump 0.3s; }
+        @keyframes bump { 50% { transform: scale(1.4); } }
+
+        /* ================================================
+           ✅ BOTTOM NAVIGATION BAR (MOBILE APP STYLE)
+           ================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%;
+            height: calc(var(--bottom-nav-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            background: var(--white);
+            border-top: 1px solid rgba(0,0,0,0.06);
+            display: flex;
+            align-items: stretch;
+            z-index: 1050;
+            box-shadow: 0 -4px 20px rgba(62,39,35,0.06);
+        }
+
+        @media (min-width: 769px) {
+            .bottom-nav { display: none; }
+        }
+
+        .bottom-nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 10px;
+            font-weight: 600;
+            transition: color 0.2s;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .bottom-nav-item i {
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+
+        .bottom-nav-item.active {
+            color: var(--red);
+        }
+
+        .bottom-nav-item.active i {
+            transform: translateY(-2px);
+        }
+
+        /* Active indicator dot */
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            width: 4px; height: 4px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        /* Cart item special styling */
+        .bottom-nav-item.cart-item {
+            color: var(--red);
+        }
+
+        .bottom-nav-item.cart-item .cart-badge-mobile {
+            position: absolute;
+            top: 8px; right: calc(50% - 18px);
+            min-width: 16px; height: 16px;
+            padding: 0 4px;
+            background: var(--green);
+            color: white;
+            border-radius: 50px;
+            font-size: 9px; font-weight: 700;
+            display: none;
+            align-items: center; justify-content: center;
+            border: 2px solid var(--white);
+        }
+
+        .bottom-nav-item.cart-item .cart-badge-mobile.show {
+            display: flex;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pattern {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233E2723' fill-opacity='1'%3E%3Cpath d='M20 20h2v2h-2zM10 10h2v2h-2zM30 30h2v2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-container {
+            width: 100%;
+            padding: 90px var(--side) 50px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative; z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 70px;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px;
+            background: rgba(192,57,43,0.07);
+            border: 1px solid rgba(192,57,43,0.12);
+            border-radius: 50px;
+            font-size: 12px; font-weight: 600;
+            color: var(--red);
+            margin-bottom: 18px;
+        }
+
+        .hero-title {
+            font-size: clamp(30px, 4.5vw, 52px);
+            font-weight: 800;
+            color: var(--brown);
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .hero-title .highlight { color: var(--red); position: relative; }
+
+        .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 3px; left: 0;
+            width: 100%; height: 6px;
+            background: rgba(230,126,34,0.15);
+            border-radius: 3px;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 24px;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .hero-desc { margin: 0 auto 24px; }
+        }
+
+        .hero-buttons {
+            display: flex; gap: 12px; flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-buttons { justify-content: center; }
+        }
+
+        .btn-wa {
+            padding: 12px 24px;
+            background: var(--green);
+            color: white; border: none;
+            border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 12px rgba(39,174,96,0.25);
+        }
+
+        .btn-wa:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+        .btn-menu {
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--brown);
+            border: 1.5px solid var(--brown-light);
+            border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-menu:hover { border-color: var(--red); color: var(--red); }
+
+        .hero-stats { display: flex; gap: 28px; }
+
+        @media (max-width: 768px) {
+            .hero-stats { justify-content: center; }
+        }
+
+        .hero-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px; font-weight: 800;
+            color: var(--red);
+        }
+
+        .hero-stat-label { font-size: 11px; color: var(--gray); font-weight: 500; }
+
+        .hero-visual { position: relative; display: flex; justify-content: center; }
+
+        @media (max-width: 768px) {
+            .hero-visual { order: -1; }
+        }
+
+        .hero-img-main {
+            width: 100%; max-width: 600px; height: 460px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-img-main { max-width: 300px; height: 300px; }
+        }
+
+        .hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero-float-badge {
+            position: absolute;
+            bottom: -14px; left: 0;
+            background: white;
+            padding: 12px 18px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: flex; align-items: center; gap: 10px;
+            animation: floatB 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero-float-badge, .hero-float-badge2 { display: none; }
+        }
+
+        @keyframes floatB {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .hero-float-badge .icon {
+            width: 34px; height: 34px;
+            background: var(--red);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 15px;
+        }
+
+        .hero-float-badge .text h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; font-weight: 700; color: var(--brown);
+        }
+
+        .hero-float-badge .text p { font-size: 10px; color: var(--gray); }
+
+        .hero-float-badge2 {
+            position: absolute;
+            top: 14px; right: 0;
+            background: var(--red);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 12px; font-weight: 600;
+            box-shadow: 0 6px 16px rgba(192,57,43,0.25);
+            animation: floatB 4s ease-in-out infinite reverse;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section { padding: 50px 0; }
+
+        .section-container {
+            width: 100%;
+            padding: 0 var(--side);
+        }
+
+        .section-header { text-align: center; margin-bottom: 36px; }
+
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 5px 14px;
+            background: rgba(192,57,43,0.07);
+            border-radius: 50px;
+            font-size: 11px; font-weight: 700;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(24px, 3.5vw, 34px);
+            font-weight: 800;
+            color: var(--brown);
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--gray);
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        /* ===== MENU ===== */
+        .menu-section { background: white; }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        .menu-card {
+            background: var(--cream);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-card-img {
+            height: 160px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (max-width: 480px) {
+            .menu-card-img { height: 120px; }
+        }
+
+        .menu-card-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .menu-card:hover .menu-card-img img { transform: scale(1.06); }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            padding: 4px 10px;
+            background: var(--red);
+            color: white;
+            border-radius: 20px;
+            font-size: 10px; font-weight: 700;
+        }
+
+        .menu-card-badge.best { background: var(--gold); }
+        .menu-card-badge.pedas { background: var(--red); }
+        .menu-card-badge.baru { background: var(--green); }
+
+        .menu-card-body { padding: 18px; }
+
+        @media (max-width: 480px) {
+            .menu-card-body { padding: 12px; }
+        }
+
+        .menu-card-body h3 {
+            font-size: 16px; font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .menu-card-body h3 { font-size: 14px; }
+        }
+
+        .menu-card-body p {
+            font-size: 12px; color: var(--gray);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .menu-card-body p { 
+                font-size: 11px; 
+                margin-bottom: 10px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+
+        .menu-card-footer {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .menu-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px; font-weight: 800;
+            color: var(--red);
+        }
+
+        @media (max-width: 480px) {
+            .menu-price { font-size: 15px; }
+        }
+
+        .menu-order-btn {
+            padding: 7px 16px;
+            background: var(--green);
+            color: white; border: none;
+            border-radius: 50px;
+            font-size: 11px; font-weight: 600;
+            cursor: pointer; transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex; align-items: center; gap: 6px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .menu-order-btn { 
+                padding: 6px 12px; 
+                font-size: 10px;
+            }
+        }
+
+        .menu-order-btn:hover { background: var(--green-dark); transform: scale(1.05); }
+
+        /* ===== ABOUT ===== */
+        .about-section { background: var(--cream); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+        }
+
+        .about-img { position: relative; }
+
+        .about-img-main {
+            width: 100%; height: 360px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        @media (max-width: 768px) {
+            .about-img-main { height: 260px; }
+        }
+
+        .about-img-main img { width: 100%; height: 100%; object-fit: cover; }
+
+        .about-experience {
+            position: absolute;
+            bottom: -14px; right: -10px;
+            background: var(--red);
+            color: white;
+            padding: 16px 20px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(192,57,43,0.25);
+        }
+
+        .about-experience .number {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px; font-weight: 800;
+        }
+
+        .about-experience .label { font-size: 11px; opacity: 0.9; }
+
+        .about-content h2 {
+            font-size: 28px; font-weight: 800;
+            color: var(--brown);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .about-content p {
+            font-size: 13px; color: var(--gray);
+            margin-bottom: 12px;
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .about-feature {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .about-feature i { font-size: 15px; color: var(--red); }
+        .about-feature span { font-size: 12px; font-weight: 600; color: var(--brown); }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-section { background: white; }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-stars { display: flex; gap: 2px; margin-bottom: 12px; }
+        .testimonial-stars i { color: var(--gold); font-size: 12px; }
+
+        .testimonial-card blockquote {
+            font-size: 13px; color: var(--brown-light);
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .testimonial-author { display: flex; align-items: center; gap: 10px; }
+
+        .testimonial-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--red);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 14px;
+        }
+
+        .testimonial-author h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 600; color: var(--brown);
+        }
+
+        .testimonial-author p { font-size: 11px; color: var(--gray); }
+
+        /* ===== LOCATION ===== */
+        .location-section { background: var(--cream); }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .location-grid { grid-template-columns: 1fr; }
+        }
+
+        .location-map {
+            width: 100%; height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #e8e8e8;
+        }
+
+        @media (max-width: 768px) {
+            .location-map { height: 220px; }
+        }
+
+        .location-map iframe { width: 100%; height: 100%; border: none; }
+
+        .location-info h3 {
+            font-size: 20px; font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 16px;
+        }
+
+        .location-detail {
+            display: flex; align-items: flex-start; gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .location-detail i {
+            width: 32px; height: 32px;
+            background: rgba(192,57,43,0.07);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--red); font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .location-detail div h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 600; color: var(--brown);
+        }
+
+        .location-detail div p { font-size: 12px; color: var(--gray); }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, var(--orange) 100%);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(24px, 3.5vw, 34px);
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .cta-section p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 24px;
+            max-width: 420px;
+            margin-left: auto; margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+        }
+
+        .cta-btn-wa {
+            padding: 13px 28px;
+            background: white;
+            color: var(--green-dark);
+            border-radius: 50px;
+            font-size: 14px; font-weight: 700;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 16px rgba(0,0,0,0.12);
+        }
+
+        .cta-btn-wa:hover { transform: translateY(-2px) scale(1.02); }
+
+        .cta-btn-call {
+            padding: 13px 28px;
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            border-radius: 50px;
+            font-size: 14px; font-weight: 600;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn-call:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--brown);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        .footer-brand h3 { font-size: 18px; color: white; margin-bottom: 8px; }
+        .footer-brand p { font-size: 12px; line-height: 1.7; max-width: 400px; }
+
+        .footer-col h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; font-weight: 700;
+            color: white;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+
+        .footer-col ul li a {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--orange-light); }
+
+        .footer-bottom {
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            font-size: 11px;
+        }
+
+        /* ===== FLOATING WA ===== */
+        .float-wa {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 20px);
+            right: 20px;
+            width: 52px; height: 52px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px;
+            box-shadow: 0 3px 16px rgba(39,174,96,0.35);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @media (min-width: 769px) {
+            .float-wa { bottom: 20px; }
+        }
+
+        .float-wa:hover { transform: scale(1.08); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(39,174,96,0.35); }
+            70% { box-shadow: 0 0 0 12px rgba(39,174,96,0); }
+            100% { box-shadow: 0 0 0 0 rgba(39,174,96,0); }
+        }
+
+        /* ================================================
+           ✅ SISTEM KERANJANG PESANAN (DRAWER)
+           ================================================ */
+        .cart-overlay {
+            position: fixed; inset: 0;
+            background: rgba(62,39,35,0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1100;
+        }
+
+        .cart-overlay.show { opacity: 1; pointer-events: auto; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -440px;
+            width: 420px; max-width: 94vw;
+            height: 100vh;
+            background: white;
+            z-index: 1200;
+            display: flex; flex-direction: column;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+            transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .cart-drawer.open { right: 0; }
+
+        .cart-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0e8dd;
+            background: var(--cream);
+        }
+
+        .cart-header h3 { font-size: 18px; color: var(--brown); }
+
+        .cart-close {
+            width: 32px; height: 32px;
+            border: none; border-radius: 50%;
+            background: rgba(192,57,43,0.08);
+            color: var(--red);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cart-close:hover { background: var(--red); color: white; }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+        }
+
+        .cart-step.hidden { display: none; }
+
+        .order-code-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px;
+            background: var(--cream-dark);
+            border: 1px dashed var(--orange);
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--brown-light);
+            margin-bottom: 14px;
+        }
+
+        .order-code-chip strong { color: var(--red); letter-spacing: 0.5px; }
+
+        .cart-empty {
+            text-align: center;
+            padding: 30px 10px;
+            color: var(--gray);
+        }
+
+        .cart-empty i { font-size: 40px; color: #ddd; margin-bottom: 10px; }
+        .cart-empty p { font-size: 13px; }
+
+        .cart-item {
+            display: flex; gap: 12px; align-items: center;
+            padding: 12px;
+            background: var(--cream);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .cart-item img {
+            width: 54px; height: 54px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info { flex: 1; min-width: 0; }
+
+        .cart-item-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 700;
+            color: var(--brown);
+        }
+
+        .cart-item-info .ci-price { font-size: 11px; color: var(--gray); }
+
+        .cart-item-info .ci-sub {
+            font-size: 12px; color: var(--red); font-weight: 700;
+        }
+
+        .qty-box {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 4px;
+        }
+
+        .qty-row { display: flex; align-items: center; gap: 8px; }
+
+        .qty-btn {
+            width: 24px; height: 24px;
+            border: none; border-radius: 50%;
+            background: white;
+            color: var(--red);
+            font-size: 13px; font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover { background: var(--red); color: white; }
+
+        .qty-num { font-size: 13px; font-weight: 700; min-width: 16px; text-align: center; }
+
+        .qty-del {
+            border: none; background: none;
+            color: #ccc; font-size: 11px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .qty-del:hover { color: var(--red); }
+
+        .cart-total-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 4px;
+            margin-top: 6px;
+            border-top: 2px dashed #e8ddcc;
+            font-size: 14px; font-weight: 600;
+            color: var(--brown);
+        }
+
+        .cart-total-row strong {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--red);
+        }
+
+        .form-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 700;
+            color: var(--brown);
+            margin: 14px 0 10px;
+            display: flex; align-items: center; gap: 6px;
+        }
+
+        .cart-form input, .cart-form textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid #eee3d5;
+            border-radius: 10px;
+            background: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--brown);
+            margin-bottom: 10px;
+            outline: none;
+            transition: border 0.3s;
+            resize: none;
+        }
+
+        .cart-form input:focus, .cart-form textarea:focus { border-color: var(--red); }
+
+        .cart-form input.error, .cart-form textarea.error {
+            border-color: var(--red);
+            background: #fdecea;
+        }
+
+        .btn-confirm {
+            width: 100%;
+            padding: 13px;
+            border: none; border-radius: 50px;
+            background: var(--red);
+            color: white;
+            font-size: 14px; font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 14px rgba(192,57,43,0.3);
+        }
+
+        .btn-confirm:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+        /* Step Konfirmasi */
+        .confirm-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px; font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+        }
+
+        .sum-card {
+            background: var(--cream);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .sum-code {
+            font-size: 12px; color: var(--brown-light);
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0d5c2;
+            margin-bottom: 10px;
+        }
+
+        .sum-code strong { color: var(--red); }
+
+        .sum-row {
+            display: flex; justify-content: space-between;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--brown);
+            margin-bottom: 6px;
+        }
+
+        .sum-row em { color: var(--gray); font-style: normal; font-size: 12px; }
+        .sum-row strong { color: var(--red); white-space: nowrap; }
+
+        .sum-total {
+            display: flex; justify-content: space-between;
+            margin-top: 10px; padding-top: 10px;
+            border-top: 2px dashed #e0d5c2;
+            font-size: 14px; font-weight: 700;
+            color: var(--brown);
+        }
+
+        .sum-total strong { color: var(--red); font-size: 17px; }
+
+        .sum-cust {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #e0d5c2;
+            font-size: 12.5px;
+            color: var(--brown-light);
+        }
+
+        .sum-cust p { margin-bottom: 3px; }
+
+        .sum-note {
+            font-size: 11.5px;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .btn-send {
+            width: 100%;
+            padding: 14px;
+            border: none; border-radius: 50px;
+            background: var(--green);
+            color: white;
+            font-size: 14px; font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 14px rgba(39,174,96,0.3);
+            margin-bottom: 10px;
+        }
+
+        .btn-send:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+        .btn-back {
+            width: 100%;
+            padding: 11px;
+            border: 1.5px solid #ddd; border-radius: 50px;
+            background: transparent;
+            color: var(--gray);
+            font-size: 13px; font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover { border-color: var(--brown); color: var(--brown); }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: calc(var(--bottom-nav-height) + var(--safe-bottom) + 80px);
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--brown);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 1300;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            white-space: nowrap;
+            max-width: 92vw;
+        }
+
+        @media (min-width: 769px) {
+            .toast { bottom: 88px; }
+        }
+
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE DESKTOP OVERRIDES ===== */
+        @media (min-width: 769px) {
+            .hero-container { grid-template-columns: 1.1fr 1fr; text-align: left; }
+            .hero-desc { margin: 0 0 24px; }
+            .hero-buttons { justify-content: flex-start; }
+            .hero-stats { justify-content: flex-start; }
+            .hero-visual { order: 0; }
+            .hero-img-main { max-width: 600px; height: 460px; }
+            .hero-float-badge, .hero-float-badge2 { display: flex; }
+            .about-grid { grid-template-columns: 1fr 1fr; }
+            .location-grid { grid-template-columns: 1.2fr 1fr; }
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+            .menu-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (DESKTOP ONLY) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">🍛</div>
+                <div class="nav-logo-text">Bu <span>Siti</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="#lokasi">Lokasi</a></li>
+            </ul>
+            <button class="desktop-cart-btn" id="desktopCartBtn" title="Keranjang Pesanan">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="desktopCartCount">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🌶️ Masakan Khas Sasak Lombok</div>
+                <h1 class="hero-title">
+                    Rasa Rumahan<br>
+                    <span class="highlight">Sasak Lombok</span><br>
+                    yang Bikin Nagih
+                </h1>
+                <p class="hero-desc">
+                    Dari dapur Bu Siti untuk Anda. Ayam Taliwang, Sate Rembiga, Plecing Kangkung — dimasak fresh setiap hari dengan resep turun-temurun.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn-wa">
+                        <i class="fas fa-utensils"></i> Pesan Sekarang
+                    </a>
+                    <a href="#menu" class="btn-menu">
+                        <i class="fas fa-book-open"></i> Lihat Menu
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">15+</div>
+                        <div class="hero-stat-label">Tahun Berjualan</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">50+</div>
+                        <div class="hero-stat-label">Menu Khas</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">1000+</div>
+                        <div class="hero-stat-label">Pelanggan Setia</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-img-main">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Warung Makan Bu Siti">
+                </div>
+                <div class="hero-float-badge">
+                    <div class="icon"></div>
+                    <div class="text">
+                        <h4>Ayam Taliwang</h4>
+                        <p>Menu Paling Laris!</p>
+                    </div>
+                </div>
+                <div class="hero-float-badge2">⭐ 4.9/5 Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="section menu-section" id="menu">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">🍽️ Menu Kami</div>
+                <h2 class="section-title">Masakan Khas Sasak</h2>
+                <p class="section-subtitle">Klik <strong>+ Pesan</strong> untuk memasukkan menu ke keranjang, lalu konfirmasi & kirim pesanan via WhatsApp.</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?auto=format&fit=crop&w=400&q=80" alt="Ayam Taliwang">
+                        <span class="menu-card-badge best">⭐ Best Seller</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Ayam Taliwang</h3>
+                        <p>Ayam kampung bakar bumbu khas Taliwang, pedas gurih. + Plecing kangkung.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 35K</span>
+                            <button class="menu-order-btn" data-id="taliwang"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1529563021893-cc83c992d75d?auto=format&fit=crop&w=400&q=80" alt="Sate Rembiga">
+                        <span class="menu-card-badge pedas">🌶️ Pedas</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Sate Rembiga</h3>
+                        <p>Sate sapi khas Lombok, bumbu manis pedas meresap. 10 tusuk/porsi.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 30K</span>
+                            <button class="menu-order-btn" data-id="rembiga"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=400&q=80" alt="Nasi Balap">
+                        <span class="menu-card-badge best">⭐ Favorit</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Nasi Balap</h3>
+                        <p>Nasi + ayam suwir pedas, telur, kacang, sambal khas. Porsi kuli!</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 20K</span>
+                            <button class="menu-order-btn" data-id="nasibalap"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80" alt="Plecing Kangkung">
+                        <span class="menu-card-badge baru">🥬 Segar</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Plecing Kangkung</h3>
+                        <p>Kangkung rebus + sambal tomat khas Lombok. Pedas segar, bikin nagih.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 12K</span>
+                            <button class="menu-order-btn" data-id="plecing"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=400&q=80" alt="Beberuk Terong">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Beberuk Terong</h3>
+                        <p>Terong bakar + sambal khas Sasak. Smoky, pedas, gurih.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 10K</span>
+                            <button class="menu-order-btn" data-id="beberuk"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card reveal">
+                    <div class="menu-card-img">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=400&q=80" alt="Sate Bulayak">
+                        <span class="menu-card-badge baru">✨ Baru</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <h3>Sate Bulayak</h3>
+                        <p>Sate ayam + lontong bulayak khas Lombok, bumbu kacang spesial.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-price">Rp 25K</span>
+                            <button class="menu-order-btn" data-id="bulayak"><i class="fas fa-plus"></i> Pesan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="section about-section" id="tentang">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-img reveal">
+                    <div class="about-img-main">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Bu Siti di dapur">
+                    </div>
+                    <div class="about-experience">
+                        <div class="number">15+</div>
+                        <div class="label">Tahun Pengalaman</div>
+                    </div>
+                </div>
+                <div class="about-content reveal">
+                    <div class="section-tag">👩‍🍳 Tentang Kami</div>
+                    <h2>Cerita di Balik Dapur Bu Siti</h2>
+                    <p>Berawal dari dapur kecil di rumah pada 2011, Bu Siti mulai memasak masakan khas Sasak untuk tetangga. Berkat cita rasa autentik dan bumbu racikan sendiri, warung ini kini jadi langganan ratusan pelanggan.</p>
+                    <p>Semua resep warisan turun-temurun dari nenek di Lombok. Bahan segar pilihan, bumbu diulek manual setiap pagi — bukan bumbu instan.</p>
+                    <div class="about-features">
+                        <div class="about-feature"><i class="fas fa-fire"></i><span>Fresh Setiap Hari</span></div>
+                        <div class="about-feature"><i class="fas fa-mortar-pestle"></i><span>Bumbu Ulek Manual</span></div>
+                        <div class="about-feature"><i class="fas fa-leaf"></i><span>Bahan Lokal Segar</span></div>
+                        <div class="about-feature"><i class="fas fa-heart"></i><span>Resep Warisan</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section class="section testimonial-section" id="testimoni">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">💬 Testimoni</div>
+                <h2 class="section-title">Kata Pelanggan Kami</h2>
+                <p class="section-subtitle">Mereka yang sudah merasakan masakan Bu Siti.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"Ayam Taliwangnya juara! Pedasnya pas, bumbu meresap sampai tulang. Udah langganan tiap minggu."</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">R</div>
+                        <div>
+                            <h4>Rina Wati</h4>
+                            <p>Pelanggan sejak 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"Sate Rembiga-nya beda. Manis pedas pas, daging empuk. Anak-anak juga suka. Recommended!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">D</div>
+                        <div>
+                            <h4>Dedi Kurniawan</h4>
+                            <p>Pelanggan sejak 2021</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"Plecing kangkungnya seger, sambalnya nampol! Harga ramah kantong. Pasti balik lagi!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">A</div>
+                        <div>
+                            <h4>Ani Susanti</h4>
+                            <p>Pelanggan sejak 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOKASI -->
+    <section class="section location-section" id="lokasi">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <div class="section-tag">📍 Lokasi</div>
+                <h2 class="section-title">Mampir ke Warung Kami</h2>
+                <p class="section-subtitle">Datang langsung atau pesan antar via WhatsApp.</p>
+            </div>
+            <div class="location-grid reveal">
+                <div class="location-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0267291283983!2d116.0963!3d-8.5831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzQnNTkuMiJTIDExNsKwMDUnNDYuNyJF!5e0!3m2!1sid!2sid!4v1" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="location-info">
+                    <h3>Warung Makan Bu Siti</h3>
+                    <div class="location-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. Gili Trawangan No. 45, Mataram, Lombok, NTB</p>
+                        </div>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Buka</h4>
+                            <p>Senin - Sabtu: 08.00 - 21.00 WITA<br>Minggu: 09.00 - 20.00 WITA</p>
+                        </div>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-motorcycle"></i>
+                        <div>
+                            <h4>Antar Gratis</h4>
+                            <p>Area Mataram, min. order Rp 50.000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="section-container reveal">
+            <h2>Laper? Pesan Sekarang! 🍛</h2>
+            <p>Masak fresh, porsi banyak, harga bersahabat. Pilih menu, masukkan keranjang, dan pesanan langsung masuk WhatsApp kami.</p>
+            <div class="cta-buttons">
+                <a href="#menu" class="cta-btn-wa">
+                    <i class="fas fa-utensils"></i> Pilih Menu
+                </a>
+                <a href="tel:+628175761165" class="cta-btn-call">
+                    <i class="fas fa-phone"></i> Telepon
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>🍛 Warung Bu Siti</h3>
+                    <p>Masakan khas rumahan Sasak Lombok. Dimasak dengan cinta dan resep turun-temurun.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#menu">Ayam Taliwang</a></li>
+                        <li><a href="#menu">Sate Rembiga</a></li>
+                        <li><a href="#menu">Nasi Balap</a></li>
+                        <li><a href="#menu">Plecing Kangkung</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#lokasi">Lokasi</a></li>
+                        <li><a href="#testimoni">Testimoni</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Warung Bu Siti. Dibuat ❤️ oleh DIGITAL PRO</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WA -->
+    <a href="https://wa.me/628175761165?text=Halo%20Bu%20Siti!" class="float-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ================================================
+         ✅ BOTTOM NAVIGATION BAR (MOBILE APP STYLE)
+         ================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="#menu" class="bottom-nav-item active" data-section="menu">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#menu" class="bottom-nav-item" data-section="menu">
+            <i class="fas fa-utensils"></i>
+            <span>Menu</span>
+        </a>
+        <a href="#tentang" class="bottom-nav-item" data-section="tentang">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+        </a>
+        <a href="#lokasi" class="bottom-nav-item" data-section="lokasi">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Lokasi</span>
+        </a>
+        <a href="#" class="bottom-nav-item cart-item" id="mobileCartBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge-mobile" id="mobileCartBadge">0</span>
+            <span>Keranjang</span>
+        </a>
+    </nav>
+
+    <!-- ===== ✅ KERANJANG PESANAN (DRAWER) ===== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>🛒 Keranjang Pesanan</h3>
+            <button class="cart-close" id="cartClose"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-body">
+
+            <!-- STEP 1: Isi Keranjang + Data Pemesan -->
+            <div class="cart-step" id="stepCart">
+                <div class="order-code-chip">📋 Kode Order: <strong id="orderCode">-</strong></div>
+
+                <div id="cartItems"></div>
+
+                <div class="cart-empty" id="cartEmpty">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Keranjang masih kosong.<br>Yuk pilih menu favoritmu! 😋</p>
+                </div>
+
+                <div class="cart-total-row">
+                    <span>Total Pesanan</span>
+                    <strong id="cartTotal">Rp 0</strong>
+                </div>
+
+                <div class="cart-form">
+                    <h4 class="form-title"><i class="fas fa-user-edit"></i> Data Pemesan</h4>
+                    <input type="text" id="custName" placeholder="Nama Pemesan *">
+                    <textarea id="custAddress" rows="2" placeholder="Alamat Pemesan *"></textarea>
+                    <input type="tel" id="custPhone" placeholder="No. WA Pemesan *">
+                </div>
+
+                <button class="btn-confirm" id="btnConfirm">
+                    <i class="fas fa-clipboard-check"></i> Konfirmasi Pesanan
+                </button>
+            </div>
+
+            <!-- STEP 2: Ringkasan + Kirim -->
+            <div class="cart-step hidden" id="stepConfirm">
+                <div class="confirm-title">✅ Periksa Kembali Pesanan Anda</div>
+                <div id="confirmSummary"></div>
+                <p class="sum-note">Pesanan akan dikirim ke WhatsApp Bu Siti setelah Anda menekan tombol di bawah.</p>
+                <button class="btn-send" id="btnSend">
+                    <i class="fab fa-whatsapp"></i> Kirim Pesanan via WhatsApp
+                </button>
+                <button class="btn-back" id="btnBack">
+                    <i class="fas fa-arrow-left"></i> Kembali Ubah Pesanan
+                </button>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ===== NAVBAR SCROLL (DESKTOP) =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth > 768) {
+                navbar.classList.toggle('scrolled', window.scrollY > 40);
+            }
+        });
+
+        // ===== BOTTOM NAV ACTIVE STATE (MOBILE) =====
+        const bottomNavItems = document.querySelectorAll('.bottom-nav-item:not(.cart-item)');
+        const sections = ['menu', 'tentang', 'lokasi'];
+
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+                
+                const top = section.offsetTop;
+                const bottom = top + section.offsetHeight;
+                
+                if (scrollPos >= top && scrollPos < bottom) {
+                    bottomNavItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.dataset.section === sectionId) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        
+        // Handle click on bottom nav items
+        bottomNavItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.dataset.section;
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Update active state immediately
+                bottomNavItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ===== REVEAL ON SCROLL =====
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // =====================================================
+        // ✅ SISTEM KERANJANG PESANAN
+        // =====================================================
+        const WA_NUMBER = '628175761165'; // <-- Ganti dengan nomor WA Bu Siti
+
+        const MENU_DATA = {
+            taliwang:  { name: 'Ayam Taliwang',    price: 35000, img: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?auto=format&fit=crop&w=100&q=60' },
+            rembiga:   { name: 'Sate Rembiga',     price: 30000, img: 'https://images.unsplash.com/photo-1529563021893-cc83c992d75d?auto=format&fit=crop&w=100&q=60' },
+            nasibalap: { name: 'Nasi Balap',       price: 20000, img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=100&q=60' },
+            plecing:   { name: 'Plecing Kangkung', price: 12000, img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=100&q=60' },
+            beberuk:   { name: 'Beberuk Terong',   price: 10000, img: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=100&q=60' },
+            bulayak:   { name: 'Sate Bulayak',     price: 25000, img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=100&q=60' }
+        };
+
+        let cart = {}; // { idMenu: jumlah }
+        let orderCode = generateOrderCode();
+
+        // Element refs
+        const cartDrawer  = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartEmptyEl = document.getElementById('cartEmpty');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const desktopCartCountEl = document.getElementById('desktopCartCount');
+        const mobileCartBadgeEl = document.getElementById('mobileCartBadge');
+        const orderCodeEl = document.getElementById('orderCode');
+        const stepCart    = document.getElementById('stepCart');
+        const stepConfirm = document.getElementById('stepConfirm');
+        const summaryEl   = document.getElementById('confirmSummary');
+        const custName    = document.getElementById('custName');
+        const custAddress = document.getElementById('custAddress');
+        const custPhone   = document.getElementById('custPhone');
+        const toastEl     = document.getElementById('toast');
+
+        orderCodeEl.textContent = orderCode;
+
+        // Format Rupiah
+        const rupiah = n => 'Rp ' + n.toLocaleString('id-ID');
+
+        // Generate Kode Order unik: BS-20260820-AB12
+        function generateOrderCode() {
+            const d = new Date();
+            const ymd = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+            const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+            return `BS-${ymd}-${rand}`;
+        }
+
+        // Toast notification
+        let toastTimer;
+        function showToast(msg) {
+            toastEl.textContent = msg;
+            toastEl.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+        }
+
+        // Buka / tutup drawer
+        function openDrawer()  { cartDrawer.classList.add('open');  cartOverlay.classList.add('show'); }
+        function closeDrawer() { cartDrawer.classList.remove('open'); cartOverlay.classList.remove('show'); }
+
+        document.getElementById('desktopCartBtn').addEventListener('click', openDrawer);
+        document.getElementById('mobileCartBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            openDrawer();
+        });
+        document.getElementById('cartClose').addEventListener('click', closeDrawer);
+        cartOverlay.addEventListener('click', closeDrawer);
+
+        // Hitung total & jumlah item
+        function calcCart() {
+            let total = 0, count = 0;
+            for (const id in cart) {
+                total += MENU_DATA[id].price * cart[id];
+                count += cart[id];
+            }
+            return { total, count };
+        }
+
+        // Render isi keranjang
+        function renderCart() {
+            const ids = Object.keys(cart);
+            const { total, count } = calcCart();
+
+            if (ids.length === 0) {
+                cartItemsEl.innerHTML = '';
+                cartEmptyEl.style.display = 'block';
+            } else {
+                cartEmptyEl.style.display = 'none';
+                cartItemsEl.innerHTML = ids.map(id => {
+                    const m = MENU_DATA[id];
+                    const qty = cart[id];
+                    return `
+                    <div class="cart-item">
+                        <img src="${m.img}" alt="${m.name}">
+                        <div class="cart-item-info">
+                            <h4>${m.name}</h4>
+                            <span class="ci-price">${rupiah(m.price)} / porsi</span><br>
+                            <span class="ci-sub">${qty} x = ${rupiah(m.price * qty)}</span>
+                        </div>
+                        <div class="qty-box">
+                            <div class="qty-row">
+                                <button class="qty-btn" onclick="changeQty('${id}', -1)">−</button>
+                                <span class="qty-num">${qty}</span>
+                                <button class="qty-btn" onclick="changeQty('${id}', 1)">+</button>
+                            </div>
+                            <button class="qty-del" onclick="removeItem('${id}')"><i class="fas fa-trash"></i> hapus</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            cartTotalEl.textContent = rupiah(total);
+            
+            // Update BOTH badges (desktop & mobile)
+            desktopCartCountEl.textContent = count;
+            mobileCartBadgeEl.textContent = count;
+            mobileCartBadgeEl.classList.toggle('show', count > 0);
+            
+            // Bump animation for both
+            [desktopCartCountEl, mobileCartBadgeEl].forEach(el => {
+                el.classList.remove('bump');
+                void el.offsetWidth;
+                el.classList.add('bump');
+            });
+        }
+
+        // Tambah ke keranjang (tombol + Pesan di kartu menu)
+        function addToCart(id) {
+            cart[id] = (cart[id] || 0) + 1;
+            renderCart();
+            openDrawer();
+            showToast(`✅ ${MENU_DATA[id].name} masuk keranjang!`);
+        }
+
+        // Ubah jumlah +/-
+        function changeQty(id, delta) {
+            cart[id] += delta;
+            if (cart[id] <= 0) delete cart[id];
+            renderCart();
+        }
+
+        // Hapus item
+        function removeItem(id) {
+            delete cart[id];
+            renderCart();
+            showToast('🗑️ Menu dihapus dari keranjang');
+        }
+
+        // Tombol + Pesan pada setiap kartu menu
+        document.querySelectorAll('.menu-order-btn').forEach(btn => {
+            btn.addEventListener('click', () => addToCart(btn.dataset.id));
+        });
+
+        // STEP 1 -> STEP 2 : Konfirmasi Pesanan
+        document.getElementById('btnConfirm').addEventListener('click', () => {
+            if (Object.keys(cart).length === 0) {
+                showToast('🛒 Keranjang masih kosong!');
+                return;
+            }
+
+            // Validasi data pemesan
+            let valid = true;
+            [custName, custAddress, custPhone].forEach(f => {
+                if (!f.value.trim()) { f.classList.add('error'); valid = false; }
+                else f.classList.remove('error');
+            });
+            if (!valid) {
+                showToast('️ Lengkapi nama, alamat & No. WA!');
+                return;
+            }
+
+            // Bangun ringkasan
+            const { total } = calcCart();
+            let no = 1, rows = '';
+            for (const id in cart) {
+                const m = MENU_DATA[id];
+                const qty = cart[id];
+                rows += `<div class="sum-row"><span>${no}. ${m.name} <em>x${qty}</em></span><strong>${rupiah(m.price * qty)}</strong></div>`;
+                no++;
+            }
+
+            summaryEl.innerHTML = `
+                <div class="sum-card">
+                    <div class="sum-code">📋 Kode Order: <strong>${orderCode}</strong></div>
+                    ${rows}
+                    <div class="sum-total"><span>Total Pesanan</span><strong>${rupiah(total)}</strong></div>
+                    <div class="sum-cust">
+                        <p> <strong>${custName.value.trim()}</strong></p>
+                        <p>📍 ${custAddress.value.trim()}</p>
+                        <p>📱 ${custPhone.value.trim()}</p>
+                    </div>
+                </div>`;
+
+            stepCart.classList.add('hidden');
+            stepConfirm.classList.remove('hidden');
+        });
+
+        // Kembali ke step 1
+        document.getElementById('btnBack').addEventListener('click', () => {
+            stepConfirm.classList.add('hidden');
+            stepCart.classList.remove('hidden');
+        });
+
+        // STEP 2 -> KIRIM ke WhatsApp
+        document.getElementById('btnSend').addEventListener('click', () => {
+            const { total } = calcCart();
+
+            // Susun pesan WhatsApp
+            let msg = `*PESANAN BARU - WARUNG BU SITI* 🍛\n`;
+            msg += `━━━━━━━━━━━━━━━━━━\n`;
+            msg += `📋 Kode Order: *${orderCode}*\n\n`;
+            msg += `*Rincian Menu Pesanan:*\n`;
+            let no = 1;
+            for (const id in cart) {
+                const m = MENU_DATA[id];
+                const qty = cart[id];
+                msg += `${no}. ${m.name}\n    ${qty} x ${rupiah(m.price)} = *${rupiah(m.price * qty)}*\n`;
+                no++;
+            }
+            msg += `\n💰 *TOTAL PESANAN: ${rupiah(total)}*\n`;
+            msg += `━━━━━━━━━━━━━━━━━━\n`;
+            msg += ` Nama Pemesan: ${custName.value.trim()}\n`;
+            msg += `📍 Alamat: ${custAddress.value.trim()}\n`;
+            msg += `📱 No. WA: ${custPhone.value.trim()}\n\n`;
+            msg += `Mohon dikonfirmasi ya Bu. Terima kasih! `;
+
+            window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+
+            // Reset keranjang & buat kode order baru
+            cart = {};
+            renderCart();
+            orderCode = generateOrderCode();
+            orderCodeEl.textContent = orderCode;
+            custName.value = custAddress.value = custPhone.value = '';
+            stepConfirm.classList.add('hidden');
+            stepCart.classList.remove('hidden');
+            closeDrawer();
+            showToast('🚀 Pesanan terkirim ke WhatsApp!');
+        });
+
+        // Hapus tanda error saat user mengetik
+        [custName, custAddress, custPhone].forEach(f => {
+            f.addEventListener('input', () => f.classList.remove('error'));
+        });
+
+        renderCart();
+    </script>
+</body>
+</html>
