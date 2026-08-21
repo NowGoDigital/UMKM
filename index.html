@@ -401,13 +401,24 @@
         .hero-visual {
             position: relative;
             align-self: start;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        /* ✅ Statistik di bawah mockup, sejajar tombol kiri */
+        .hero-visual .hero-stats {
+            margin-top: 24px;
+            width: 100%;
+            max-width: 470px;
+            justify-content: space-between;
         }
 
         .hero-mockup {
             position: relative;
-            width: 100%; max-width: 520px;
+            width: 100%; max-width: 470px;
         }
 
         .mockup-browser {
@@ -446,8 +457,8 @@
         }
 
         .mockup-body {
-            padding: 30px;
-            min-height: 300px;
+            padding: 24px;
+            min-height: 260px;
             background: linear-gradient(180deg, var(--dark-2) 0%, var(--dark-3) 100%);
             position: relative;
         }
@@ -464,10 +475,10 @@
         .mockup-body-line:nth-child(5) { width: 40%; background: var(--primary); height: 36px; border-radius: 20px; opacity: 0.7; }
 
         .mockup-body-img {
-            width: 100%; height: 100px;
+            width: 100%; height: 80px;
             background: var(--gradient-1);
             border-radius: 12px;
-            margin-top: 24px; opacity: 0.3;
+            margin-top: 18px; opacity: 0.3;
         }
 
         .hero-float-card {
@@ -1325,22 +1336,8 @@
                         Konsultasi Gratis
                     </a>
                 </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">300<span>+</span></div>
-                        <div class="hero-stat-label">UMKM Terbantu</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">98<span>%</span></div>
-                        <div class="hero-stat-label">Klien Puas</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-number">5<span>+</span></div>
-                        <div class="hero-stat-label">Tahun Pengalaman</div>
-                    </div>
-                </div>
-
-                <!-- ✅ KARTU EDUKASI: di bawah statistik -->
+                
+                <!-- ✅ KARTU EDUKASI: di bawah tombol -->
                 <div class="hero-edu-card">
                     <h4><i class="fas fa-lightbulb"></i> Kenapa Bisnis Wajib Punya Website?</h4>
                     <ul class="edu-list">
@@ -1395,7 +1392,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-float-card card-2">
+                                        <div class="hero-float-card card-2">
                         <div class="float-card-row">
                             <div class="float-card-icon orange"><i class="fas fa-store"></i></div>
                             <div class="float-card-text">
@@ -1403,6 +1400,22 @@
                                 <p>Jangkauan makin luas</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- ✅ STATISTIK: pindah ke bawah mockup -->
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">300<span>+</span></div>
+                        <div class="hero-stat-label">UMKM Terbantu</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">98<span>%</span></div>
+                        <div class="hero-stat-label">Klien Puas</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5<span>+</span></div>
+                        <div class="hero-stat-label">Tahun Pengalaman</div>
                     </div>
                 </div>
             </div>
