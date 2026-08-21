@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGITAL PRO - Solusi Website untuk UMKM Indonesia</title>
     <meta name="description" content="DIGITAL PRO menghadirkan solusi website profesional yang modern, cepat, dan SEO-friendly untuk mengembangkan bisnis UMKM Anda ke level selanjutnya.">
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            /* ✅ TEMA UMKM: Warna hangat, approachable, growth */
-            --primary: #E8590C;
-            --primary-light: #FF922B;
-            --primary-dark: #D9480F;
-            --accent: #2B8A3E;
-            --accent-light: #40C057;
-            --dark: #1A1208;
-            --dark-2: #241A0E;
-            --dark-3: #2E2214;
-            --dark-4: #3D3020;
+            /* ✅ TEMA BIRU: Profesional, trust, modern — sesuai warna logo */
+            --primary: #2563EB;
+            --primary-light: #60A5FA;
+            --primary-dark: #1D4ED8;
+            --accent: #06B6D4;
+            --accent-light: #22D3EE;
+            --dark: #0A0F1E;
+            --dark-2: #0F172A;
+            --dark-3: #17223A;
+            --dark-4: #253552;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
             --gray-300: #CBD5E1;
@@ -26,14 +27,14 @@
             --gray-500: #64748B;
             --gray-600: #475569;
             --white: #FFFFFF;
-            --cream: #FFF8F0;
-            --gradient-1: linear-gradient(135deg, #E8590C 0%, #2B8A3E 100%);
-            --gradient-2: linear-gradient(135deg, #E8590C 0%, #FF922B 50%, #40C057 100%);
-            --gradient-3: linear-gradient(180deg, #1A1208 0%, #241A0E 100%);
-            --shadow-sm: 0 2px 10px rgba(232, 89, 12, 0.1);
-            --shadow-md: 0 8px 30px rgba(232, 89, 12, 0.15);
-            --shadow-lg: 0 20px 60px rgba(232, 89, 12, 0.2);
-            --shadow-glow: 0 0 40px rgba(232, 89, 12, 0.3);
+            --cream: #F0F7FF;
+            --gradient-1: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+            --gradient-2: linear-gradient(135deg, #2563EB 0%, #60A5FA 50%, #22D3EE 100%);
+            --gradient-3: linear-gradient(180deg, #0A0F1E 0%, #0F172A 100%);
+            --shadow-sm: 0 2px 10px rgba(37, 99, 235, 0.1);
+            --shadow-md: 0 8px 30px rgba(37, 99, 235, 0.15);
+            --shadow-lg: 0 20px 60px rgba(37, 99, 235, 0.2);
+            --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,11 +68,11 @@
         }
 
         .navbar.scrolled {
-            background: rgba(26, 18, 8, 0.92);
+            background: rgba(10, 15, 30, 0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 12px 0;
-            border-bottom: 1px solid rgba(232, 89, 12, 0.15);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.15);
         }
 
         .nav-container {
@@ -90,29 +91,15 @@
             text-decoration: none;
         }
 
-        .nav-logo-icon {
-            width: 44px; height: 44px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; color: white; font-weight: 800;
-            font-family: 'Space Grotesk', sans-serif;
-            position: relative; overflow: hidden;
+        .nav-logo-img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            border-radius: 10px;
+            transition: transform 0.3s;
         }
 
-        .nav-logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
-            animation: logoShine 3s infinite;
-        }
-
-        @keyframes logoShine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
+        .nav-logo:hover .nav-logo-img { transform: scale(1.06); }
 
         .nav-logo-text {
             font-family: 'Space Grotesk', sans-serif;
@@ -165,13 +152,13 @@
             font-weight: 600; font-size: 14px;
             letter-spacing: 0.3px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(232, 89, 12, 0.35);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
         }
 
         .nav-cta::after { display: none !important; }
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(232, 89, 12, 0.5);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
         }
 
         .mobile-toggle {
@@ -246,8 +233,8 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image:
-                linear-gradient(rgba(232, 89, 12, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(232, 89, 12, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: 1;
         }
@@ -269,8 +256,8 @@
             display: inline-flex;
             align-items: center; gap: 10px;
             padding: 8px 20px;
-            background: rgba(232, 89, 12, 0.12);
-            border: 1px solid rgba(232, 89, 12, 0.25);
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.25);
             border-radius: 50px;
             font-size: 13.5px; font-weight: 500;
             color: var(--primary-light);
@@ -332,7 +319,7 @@
             cursor: pointer; transition: all 0.3s;
             text-decoration: none;
             display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: 0 4px 20px rgba(232, 89, 12, 0.4);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
             position: relative; overflow: hidden;
         }
 
@@ -348,7 +335,7 @@
         .btn-primary:hover::before { left: 100%; }
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(232, 89, 12, 0.55);
+            box-shadow: 0 8px 35px rgba(37, 99, 235, 0.55);
         }
 
         .btn-outline {
@@ -366,7 +353,7 @@
         .btn-outline:hover {
             border-color: var(--primary);
             color: var(--white);
-            background: rgba(232, 89, 12, 0.08);
+            background: rgba(37, 99, 235, 0.08);
             transform: translateY(-3px);
         }
 
@@ -424,9 +411,9 @@
         .mockup-browser {
             background: var(--dark-2);
             border-radius: 16px;
-            border: 1px solid rgba(232, 89, 12, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.15);
             overflow: hidden;
-            box-shadow: var(--shadow-lg), 0 0 80px rgba(232, 89, 12, 0.1);
+            box-shadow: var(--shadow-lg), 0 0 80px rgba(37, 99, 235, 0.1);
             transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
             transition: transform 0.5s;
         }
@@ -484,7 +471,7 @@
         .hero-float-card {
             position: absolute;
             background: var(--dark-2);
-            border: 1px solid rgba(232, 89, 12, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.15);
             border-radius: 14px;
             padding: 16px 20px;
             backdrop-filter: blur(10px);
@@ -509,8 +496,8 @@
             font-size: 16px;
         }
 
-        .float-card-icon.green { background: rgba(43, 138, 62, 0.15); color: var(--accent-light); }
-        .float-card-icon.orange { background: rgba(232, 89, 12, 0.15); color: var(--primary-light); }
+        .float-card-icon.green { background: rgba(6, 182, 212, 0.15); color: var(--accent-light); }
+        .float-card-icon.orange { background: rgba(37, 99, 235, 0.15); color: var(--primary-light); }
 
         .float-card-text h4 { font-size: 13px; color: var(--white); font-weight: 600; }
         .float-card-text p { font-size: 11px; color: var(--gray-500); }
@@ -534,8 +521,8 @@
         .section-tag {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 6px 18px;
-            background: rgba(232, 89, 12, 0.1);
-            border: 1px solid rgba(232, 89, 12, 0.2);
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
             border-radius: 50px;
             font-size: 13px; font-weight: 600;
             color: var(--primary-light);
@@ -589,7 +576,7 @@
 
         .service-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(232, 89, 12, 0.2);
+            border-color: rgba(37, 99, 235, 0.2);
             box-shadow: var(--shadow-lg);
         }
 
@@ -601,7 +588,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 24px;
             margin-bottom: 24px;
-            background: rgba(232, 89, 12, 0.1);
+            background: rgba(37, 99, 235, 0.1);
             color: var(--primary-light);
             transition: all 0.3s;
         }
@@ -658,7 +645,7 @@
             background: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 15px rgba(232, 89, 12, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .portfolio-grid {
@@ -679,7 +666,7 @@
 
         .portfolio-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(232, 89, 12, 0.25);
+            border-color: rgba(37, 99, 235, 0.25);
             box-shadow: var(--shadow-lg);
         }
 
@@ -707,7 +694,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(232, 89, 12, 0.85);
+            background: rgba(37, 99, 235, 0.85);
             display: flex; align-items: center; justify-content: center;
             opacity: 0; transition: all 0.4s;
             pointer-events: none;
@@ -752,7 +739,7 @@
 
         .portfolio-tag {
             padding: 4px 12px;
-            background: rgba(232, 89, 12, 0.1);
+            background: rgba(37, 99, 235, 0.1);
             border-radius: 50px;
             font-size: 11.5px; font-weight: 500;
             color: var(--primary-light);
@@ -814,7 +801,7 @@
             width: 64px; height: 64px;
             border-radius: 20px;
             background: var(--dark-2);
-            border: 2px solid rgba(232, 89, 12, 0.2);
+            border: 2px solid rgba(37, 99, 235, 0.2);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 24px;
             font-family: 'Space Grotesk', sans-serif;
@@ -871,7 +858,7 @@
         }
 
         .tech-item:hover {
-            border-color: rgba(232, 89, 12, 0.3);
+            border-color: rgba(37, 99, 235, 0.3);
             transform: translateY(-3px);
         }
 
@@ -897,7 +884,7 @@
 
         .testimonial-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(232, 89, 12, 0.2);
+            border-color: rgba(37, 99, 235, 0.2);
             box-shadow: var(--shadow-md);
         }
 
@@ -946,9 +933,9 @@
         }
 
         .pricing-card.featured {
-            border-color: rgba(232, 89, 12, 0.3);
+            border-color: rgba(37, 99, 235, 0.3);
             transform: scale(1.04);
-            box-shadow: var(--shadow-lg), 0 0 60px rgba(232, 89, 12, 0.1);
+            box-shadow: var(--shadow-lg), 0 0 60px rgba(37, 99, 235, 0.1);
         }
 
         .pricing-card.featured::before {
@@ -966,7 +953,7 @@
 
         .pricing-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(232, 89, 12, 0.2);
+            border-color: rgba(37, 99, 235, 0.2);
         }
 
         .pricing-card.featured:hover { transform: scale(1.04) translateY(-8px); }
@@ -1011,11 +998,11 @@
         .pricing-btn.primary {
             background: var(--gradient-1);
             color: white; border: none;
-            box-shadow: 0 4px 20px rgba(232, 89, 12, 0.3);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
         }
 
         .pricing-btn.primary:hover {
-            box-shadow: 0 8px 30px rgba(232, 89, 12, 0.5);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
             transform: translateY(-2px);
         }
 
@@ -1028,7 +1015,7 @@
         .pricing-btn.outline:hover {
             border-color: var(--primary);
             color: white;
-            background: rgba(232, 89, 12, 0.05);
+            background: rgba(37, 99, 235, 0.05);
         }
 
         /* ===== CTA ===== */
@@ -1040,7 +1027,7 @@
             padding: 80px 60px;
             background: var(--dark-2);
             border-radius: 32px;
-            border: 1px solid rgba(232, 89, 12, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.15);
             position: relative; overflow: hidden;
         }
 
@@ -1174,10 +1161,10 @@
                 display: flex; flex-direction: column;
                 position: absolute; top: 100%; left: 0;
                 width: 100%;
-                background: rgba(26, 18, 8, 0.98);
+                background: rgba(10, 15, 30, 0.98);
                 backdrop-filter: blur(20px);
                 padding: 30px; gap: 20px;
-                border-bottom: 1px solid rgba(232, 89, 12, 0.15);
+                border-bottom: 1px solid rgba(37, 99, 235, 0.15);
             }
             .mobile-toggle { display: flex; }
             .services-grid { grid-template-columns: 1fr; }
@@ -1212,7 +1199,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <div class="nav-logo-icon">DP</div>
+                <img src="logo.png" alt="DIGITAL PRO" class="nav-logo-img">
                 <div class="nav-logo-text">DIGITAL <span>PRO</span></div>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1768,7 +1755,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="nav-logo">
-                        <div class="nav-logo-icon">DP</div>
+                        <img src="logo.png" alt="DIGITAL PRO" class="nav-logo-img">
                         <div class="nav-logo-text">DIGITAL <span>PRO</span></div>
                     </a>
                     <p>Partner digital terpercaya untuk UMKM Indonesia. Kami bantu usaha kecil punya website profesional tanpa bikin kantong jebol. 🇮🇩</p>
