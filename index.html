@@ -278,12 +278,12 @@
         }
 
         .hero-title {
-            font-size: clamp(38px, 5vw, 62px);
+            font-size: clamp(26px, 3.5vw, 46px);
             font-weight: 800;
             color: var(--white);
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 24px;
-            letter-spacing: -2px;
+            letter-spacing: -1.5px;
             animation: fadeInUp 0.8s ease-out 0.15s both;
         }
 
@@ -399,6 +399,7 @@
         /* Hero Visual */
         .hero-visual {
             position: relative;
+            top: -50px;
             display: flex; align-items: center; justify-content: center;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
@@ -1143,7 +1144,7 @@
             .hero-desc { margin: 0 auto 40px; }
             .hero-buttons { justify-content: center; }
             .hero-stats { justify-content: center; }
-            .hero-visual { order: -1; }
+            .hero-visual { order: -1; top: 0; }
             .hero-mockup { max-width: 420px; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
