@@ -1217,8 +1217,17 @@
             text-decoration: none;
         }
 
-        .pricing-custom-note a:hover { text-decoration: underline; }
+       .pricing-custom-note a:hover { text-decoration: underline; }
 
+        /* ✅ Pembungkus CTA tengah (pengganti 3 card paket) */
+        .pricing-cta-wrap {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .pricing-cta-wrap .pricing-custom-note {
+            margin-top: 16px;
+        }
         .pricing-features { list-style: none; margin-bottom: 32px; }
 
         .pricing-features li {
@@ -1455,7 +1464,7 @@
                 <li><a href="#portfolio">Portofolio</a></li>
                 <li><a href="#process">Proses</a></li>
                 <li><a href="#testimonials">Testimoni</a></li>
-                <li><a href="#pricing">Harga</a></li>
+                <li><a href="#pricing">Fasilitas</a></li>
                 <li><a href="#contact" class="nav-cta">Hubungi Kami</a></li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
@@ -1970,7 +1979,7 @@
             <div class="section-header reveal">
                 <div class="section-tag"><i class="fas fa-gift"></i> Fasilitas & Fitur</div>
                 <h2 class="section-title">Semua yang Usaha Anda Dapatkan,<br>Tanpa Biaya Tersembunyi</h2>
-                <p class="section-subtitle">Pilih paket sesuai kebutuhan usaha Anda. Semua paket sudah termasuk fasilitas lengkap di bawah ini — untuk nilai investasi, langsung chat kami, disesuaikan dengan budget Anda.</p>
+                                <p class="section-subtitle">Setiap website yang kami bangun sudah termasuk fasilitas lengkap di bawah ini. Untuk nilai investasi, langsung chat kami — disesuaikan dengan kebutuhan & budget usaha Anda.</p>
             </div>
 
             <!-- ✅ Strip fasilitas semua paket -->
@@ -1985,69 +1994,20 @@
                 <div class="include-chip"><i class="fas fa-magnifying-glass"></i> SEO Friendly</div>
             </div>
 
-            <div class="pricing-grid">
-                <div class="pricing-card reveal">
-                    <h3>Paket Warung</h3>
-                    <p class="price-desc">Cocok untuk usaha rumahan & mikro</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 3 Halaman Website (Beranda, Profil, Kontak)</li>
-                        <li><i class="fas fa-check"></i> Desain Responsif (HP & Laptop)</li>
-                        <li><i class="fas fa-check"></i> Tombol WhatsApp Order</li>
-                        <li><i class="fas fa-check"></i> Google Maps Terintegrasi</li>
-                        <li><i class="fas fa-check"></i> Galeri Foto Usaha</li>
-                        <li><i class="fas fa-check"></i> Support 30 Hari</li>
-                    </ul>
-                                        <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20tertarik%20dengan%20Paket%20Warung.%20Boleh%20info%20nilai%20investasinya?" class="pricing-cta" target="_blank">
-                        <span class="cta-wa-icon"><i class="fab fa-whatsapp"></i></span>
-                        <span class="cta-wa-text">
-                            <strong>Chat WhatsApp Sekarang</strong>
-                            <small>Konsultasi gratis • Respon cepat</small>
-                        </span>
-                        <i class="fas fa-arrow-right cta-arrow"></i>
-                    </a>
-                </div>
-                  <div class="pricing-card featured reveal">
-                    <h3>Paket Toko</h3>
-                    <p class="price-desc">Untuk usaha kecil yang mau serius</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Semua Fasilitas Paket Warung</li>
-                        <li><i class="fas fa-check"></i> Hingga 10 Halaman</li>
-                        <li><i class="fas fa-check"></i> Katalog Produk + Keranjang Belanja</li>
-                        <li><i class="fas fa-check"></i> Integrasi Instagram & Marketplace</li>
-                        <li><i class="fas fa-check"></i> SEO Dasar + Google Bisnisku</li>
-                        <li><i class="fas fa-check"></i> Training Kelola Website</li>
-                        <li><i class="fas fa-check"></i> Support 90 Hari</li>
-                    </ul>
-                    <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20tertarik%20dengan%20Paket%20Toko.%20Boleh%20info%20nilai%20investasinya?" class="pricing-cta" target="_blank">
-                        <span class="cta-wa-icon"><i class="fab fa-whatsapp"></i></span>
-                        <span class="cta-wa-text">
-                            <strong>Chat WhatsApp Sekarang</strong>
-                            <small>Konsultasi gratis • Respon cepat</small>
-                        </span>
-                        <i class="fas fa-arrow-right cta-arrow"></i>
-                    </a>
-                </div>
-                <div class="pricing-card reveal">
-                    <h3>Paket Premium</h3>
-                    <p class="price-desc">Untuk UMKM yang siap scale up</p>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Semua Fitur Paket Toko</li>
-                        <li><i class="fas fa-check"></i> Halaman Unlimited</li>
-                        <li><i class="fas fa-check"></i> Payment Gateway (Midtrans)</li>
-                        <li><i class="fas fa-check"></i> Booking / Pre-Order System</li>
-                        <li><i class="fas fa-check"></i> Multi-Bahasa (ID/EN)</li>
-                        <li><i class="fas fa-check"></i> SEO Advanced + Analytics</li>
-                        <li><i class="fas fa-check"></i> Support 1 Tahun</li>
-                    </ul>
-                      <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20tertarik%20dengan%20Paket%20Premium.%20Boleh%20info%20nilai%20investasinya?" class="pricing-btn wa" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Tanya Investasi via WhatsApp
-                    </a>
-                </div>
+            <!-- ✅ CTA WHATSAPP: pengganti 3 card paket -->
+            <div class="pricing-cta-wrap reveal">
+                <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20mau%20tahu%20nilai%20investasi%20website%20untuk%20usaha%20saya.%20Boleh%20dibantu?" class="pricing-cta" target="_blank">
+                    <span class="cta-wa-icon"><i class="fab fa-whatsapp"></i></span>
+                    <span class="cta-wa-text">
+                        <strong>Chat WhatsApp — Tanya Nilai Investasi</strong>
+                        <small>Konsultasi gratis • Respon cepat • Tanpa komitmen</small>
+                    </span>
+                    <i class="fas fa-arrow-right cta-arrow"></i>
+                </a>
+                <p class="pricing-custom-note">
+                    💬 Nilai investasi kami sesuaikan dengan kebutuhan & budget usaha Anda — tanpa biaya tersembunyi.
+                </p>
             </div>
-
-            <p class="pricing-custom-note reveal">
-                Butuh fitur custom di luar paket? <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20mau%20konsultasi%20fitur%20custom%20untuk%20website%20usaha%20saya." target="_blank">Konsultasikan gratis</a> — kami sesuaikan dengan kebutuhan & budget usaha Anda. 💬
-            </p>
         </div>
     </section>
 
