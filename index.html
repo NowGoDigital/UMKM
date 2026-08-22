@@ -301,6 +301,7 @@
             margin-bottom: 40px;
             line-height: 1.8;
             max-width: 480px;
+            text-align: justify;
             animation: fadeInUp 0.8s ease-out 0.3s both;
         }
 
@@ -550,8 +551,8 @@
             font-size: 13px;
             color: var(--gray-400);
             line-height: 1.6;
+            text-align: justify;
         }
-
         .edu-list li + li { border-top: 1px solid rgba(255,255,255,0.04); }
 
         .edu-list li i {
@@ -1226,7 +1227,8 @@
         @media (max-width: 1024px) {
             .hero-container { grid-template-columns: 1fr; gap: 50px; }
             .hero-content { max-width: 100%; text-align: center; }
-            .hero-desc { margin: 0 auto 40px; }
+            .hero-desc { margin: 0 auto 40px; text-align: center; }
+            .edu-list li { text-align: center; }
             .hero-buttons { justify-content: center; }
             .hero-stats { justify-content: center; }
             .hero-visual { order: -1; top: 0; }
