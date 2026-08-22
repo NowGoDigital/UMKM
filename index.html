@@ -1272,62 +1272,81 @@
             background: rgba(37, 99, 235, 0.05);
         }
 
-        /* ===== CTA ===== */
-        .cta-section { background: var(--dark); padding: 100px 0; }
+        /* ===== ✅ CTA FULL-WIDTH MINIMALIS ===== */
+        .cta-section {
+            background: var(--dark);
+            padding: 44px 16px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(37, 99, 235, 0.12);
+        }
+
+        /* glow lembut di tengah */
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 220px;
+            background: var(--primary);
+            filter: blur(140px);
+            opacity: 0.12;
+            pointer-events: none;
+        }
 
         .cta-box {
-            max-width: 900px; margin: 0 auto;
+            width: 100%;
             text-align: center;
-            padding: 80px 60px;
-            background: var(--dark-2);
-            border-radius: 32px;
-            border: 1px solid rgba(37, 99, 235, 0.15);
-            position: relative; overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -100px; right: -100px;
-            width: 300px; height: 300px;
-            background: var(--primary);
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-        }
-
-        .cta-box::after {
-            content: '';
-            position: absolute;
-            bottom: -100px; left: -100px;
-            width: 300px; height: 300px;
-            background: var(--accent);
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.1;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-box h2 {
-            font-size: clamp(28px, 3.5vw, 40px);
+            font-size: clamp(22px, 3vw, 32px);
             font-weight: 800; color: var(--white);
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             letter-spacing: -1px;
-            position: relative; z-index: 2;
         }
 
         .cta-box p {
-            font-size: 17px; color: var(--gray-400);
-            margin-bottom: 36px;
-            max-width: 500px;
-            margin-left: auto; margin-right: auto;
-            position: relative; z-index: 2;
+            font-size: 14.5px; color: var(--gray-400);
+            margin: 0 auto 26px;
+            max-width: 520px;
         }
 
-        .cta-buttons {
-            display: flex; justify-content: center;
-            gap: 16px; flex-wrap: wrap;
-            position: relative; z-index: 2;
+        /* ✅ Satu tombol WhatsApp — pusat perhatian */
+        .cta-wa-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 60px;
+            color: white;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
         }
+
+        .cta-wa-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-wa-btn:hover::before { left: 100%; }
+
+        .cta-wa-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .cta-wa-btn .cta-wa-icon { width: 40px; height: 40px; font-size: 20px; }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -1438,7 +1457,8 @@
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn-primary, .btn-outline { width: 100%; justify-content: center; max-width: 300px; }
             .hero-stats { gap: 24px; }
-            .cta-box { padding: 50px 30px; }
+            .cta-section { padding: 36px 14px; }
+            .cta-wa-btn { width: 100%; max-width: 340px; justify-content: center; }
         }
 
         .reveal {
@@ -2013,21 +2033,17 @@
 
     <!-- ===== CTA ===== -->
     <section class="cta-section" id="contact">
-        <div class="section-container">
-            <div class="cta-box reveal">
-                <h2>Usaha Anda Siap<br>Naik Kelas? 🚀</h2>
-                <p>Konsultasi gratis, tanpa komitmen. Ceritakan usaha Anda, kami bantu carikan solusi website yang paling pas dan terjangkau.</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20pelaku%20UMKM%20dan%20tertarik%20bikin%20website.%20Bisa%20konsultasi%20gratis?" class="btn-primary" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        Chat via WhatsApp
-                    </a>
-                    <a href="mailto:hello@digitalpro.id" class="btn-outline">
-                        <i class="fas fa-envelope"></i>
-                        hello@digitalpro.id
-                    </a>
-                </div>
-            </div>
+        <div class="cta-box reveal">
+            <h2>Usaha Anda Siap Naik Kelas? 🚀</h2>
+            <p>Konsultasi gratis, tanpa komitmen — ceritakan usaha Anda, kami carikan solusi website paling pas.</p>
+            <a href="https://wa.me/6281234567890?text=Halo%20DIGITAL%20PRO!%20Saya%20pelaku%20UMKM%20dan%20tertarik%20bikin%20website.%20Bisa%20konsultasi%20gratis?" class="cta-wa-btn" target="_blank">
+                <span class="cta-wa-icon"><i class="fab fa-whatsapp"></i></span>
+                <span class="cta-wa-text">
+                    <strong>Chat via WhatsApp</strong>
+                    <small>Konsultasi gratis • Respon cepat</small>
+                </span>
+                <i class="fas fa-arrow-right cta-arrow"></i>
+            </a>
         </div>
     </section>
 
