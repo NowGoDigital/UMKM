@@ -179,11 +179,13 @@
         .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* ===== HERO ===== */
-        .hero {
+         .hero {
             min-height: 100vh;
-            display: flex; align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative; overflow: hidden;
-            padding: 120px 0 80px;
+            padding: 120px 0 60px;
         }
 
         .hero-bg {
@@ -515,79 +517,102 @@
         .float-card-text h4 { font-size: 13px; color: var(--white); font-weight: 600; }
         .float-card-text p { font-size: 11px; color: var(--gray-500); }
 
-        /* ===== ✅ KARTU EDUKASI: di bawah statistik (kolom kiri) ===== */
-        .hero-edu-card {
+        /* ===== ✅ EDUKASI FULL-WIDTH: kiri ke kanan device ===== */
+        .hero-edu-full {
             width: 100%;
-            max-width: 520px;
-            margin-top: 36px;
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            border-radius: 18px;
-            padding: 22px 24px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: var(--shadow-md);
+            padding: 40px 40px 0;
+            position: relative;
+            z-index: 2;
             animation: fadeInUp 0.8s ease-out 0.75s both;
         }
 
-        .hero-edu-card h4 {
-            font-size: 15px;
-            color: var(--white);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .edu-full-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 28px;
         }
 
-        .hero-edu-card h4 i { color: var(--accent-light); }
+        .edu-full-header h4 {
+            font-size: 20px;
+            color: var(--white);
+            margin-bottom: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        .edu-list { list-style: none; }
+        .edu-full-header h4 i { color: var(--accent-light); }
 
-        .edu-list li {
+        .edu-full-header p {
+            font-size: 13.5px;
+            color: var(--gray-400);
+            line-height: 1.7;
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .edu-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 8px 0;
-            font-size: 13px;
-            color: var(--gray-400);
-            line-height: 1.6;
-            text-align: justify;
+            gap: 14px;
+            padding: 18px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s;
         }
-        .edu-list li + li { border-top: 1px solid rgba(255,255,255,0.04); }
 
-        .edu-list li i {
-            width: 30px; height: 30px;
+        .edu-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow: var(--shadow-md);
+        }
+
+        .edu-item i {
+            width: 38px; height: 38px;
             flex-shrink: 0;
-            border-radius: 9px;
+            border-radius: 11px;
             background: rgba(37, 99, 235, 0.12);
             color: var(--primary-light);
             display: flex; align-items: center; justify-content: center;
-            font-size: 12px;
-            margin-top: 2px;
+            font-size: 15px;
         }
 
-        .edu-list li strong { color: var(--gray-200); }
+        .edu-item h5 {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-200);
+            margin-bottom: 4px;
+        }
 
-        .edu-footnote {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed rgba(37, 99, 235, 0.25);
-            font-size: 12px;
+        .edu-item p {
+            font-size: 12.5px;
+            color: var(--gray-400);
+            line-height: 1.6;
+        }
+
+        .edu-full-footnote {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12.5px;
             color: var(--gray-500);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
         }
 
-        .edu-footnote a {
+        .edu-full-footnote a {
             color: var(--accent-light);
             text-decoration: none;
             font-weight: 600;
             white-space: nowrap;
         }
 
-        .edu-footnote a:hover { text-decoration: underline; }
+        .edu-full-footnote a:hover { text-decoration: underline; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -1228,11 +1253,11 @@
             .hero-container { grid-template-columns: 1fr; gap: 50px; }
             .hero-content { max-width: 100%; text-align: center; }
             .hero-desc { margin: 0 auto 40px; text-align: center; }
-            .edu-list li { text-align: center; }
             .hero-buttons { justify-content: center; }
             .hero-stats { justify-content: center; }
             .hero-visual { order: -1; top: 0; }
-            .hero-edu-card { margin: 30px auto 0; }
+            .hero-edu-full { padding: 30px 20px 0; }
+            .edu-grid { grid-template-columns: repeat(2, 1fr); }
             .hero-mockup { max-width: 420px; }
             .services-grid { grid-template-columns: repeat(2, 1fr); }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1263,6 +1288,7 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
             .hero-float-card { display: none; }
+            .edu-grid { grid-template-columns: 1fr; }
             .section { padding: 70px 0; }
             .section-container { padding: 0 20px; }
             .nav-container { padding: 0 20px; }
@@ -1337,33 +1363,7 @@
                         Konsultasi Gratis
                     </a>
                 </div>
-                
-                <!-- ✅ KARTU EDUKASI: di bawah tombol -->
-                <div class="hero-edu-card">
-                    <h4><i class="fas fa-lightbulb"></i> Kenapa Bisnis Wajib Punya Website?</h4>
-                    <ul class="edu-list">
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span><strong>Buka 24/7 tanpa libur.</strong> Bisnis tetap "buka" dan bisa diakses pelanggan kapan saja, bahkan saat Anda tidur.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-shield-halved"></i>
-                            <span><strong>Lebih dipercaya pelanggan.</strong> 75% konsumen menilai kredibilitas usaha dari keberadaan website profesional.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-magnifying-glass-location"></i>
-                            <span><strong>Mudah ditemukan di Google.</strong> Pelanggan baru menemukan usaha Anda tanpa biaya iklan mahal.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-chart-line"></i>
-                            <span><strong>Omzet berpotensi naik 3x.</strong> Jangkauan pasar meluas, dari lingkungan sekitar hingga luar kota.</span>
-                        </li>
-                    </ul>
-                    <div class="edu-footnote">
-                        💡 Konsultasi gratis, tanpa komitmen —
-                        <a href="#contact">mulai sekarang <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
+                               
             </div>
 
             <div class="hero-visual">
@@ -1419,6 +1419,61 @@
                         <div class="hero-stat-label">Tahun Pengalaman</div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- ✅ EDUKASI FULL-WIDTH: dari kiri ke kanan device -->
+        <div class="hero-edu-full">
+            <div class="edu-full-header">
+                <h4><i class="fas fa-lightbulb"></i> Kenapa Bisnis Wajib Punya Website?</h4>
+                <p>Di era digital, calon pelanggan mencari segala sesuatu di internet. Tanpa website, bisnis Anda "tak terlihat". Berikut 6 alasan kenapa website adalah investasi paling menguntungkan untuk usaha Anda:</p>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h5>Buka 24/7 Tanpa Libur</h5>
+                        <p>Bisnis tetap "buka" dan bisa diakses pelanggan kapan saja, bahkan saat Anda tidur.</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <i class="fas fa-shield-halved"></i>
+                    <div>
+                        <h5>Lebih Dipercaya Pelanggan</h5>
+                        <p>75% konsumen menilai kredibilitas usaha dari keberadaan website profesional.</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <i class="fas fa-magnifying-glass-location"></i>
+                    <div>
+                        <h5>Mudah Ditemukan di Google</h5>
+                        <p>Pelanggan baru menemukan usaha Anda tanpa biaya iklan mahal.</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <div>
+                        <h5>Omzet Berpotensi Naik 3x</h5>
+                        <p>Jangkauan pasar meluas, dari lingkungan sekitar hingga luar kota.</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <div>
+                        <h5>Promosi Lebih Hemat & Tepat Sasaran</h5>
+                        <p>Biaya pemasaran digital jauh lebih murah dibanding iklan konvensional, dengan jangkauan yang lebih luas.</p>
+                    </div>
+                </div>
+                <div class="edu-item">
+                    <i class="fas fa-gem"></i>
+                    <div>
+                        <h5>Selangkah di Depan Kompetitor</h5>
+                        <p>Saat pesaing belum punya website, bisnis Anda terlihat lebih profesional dan unggul di mata pelanggan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="edu-full-footnote">
+                💡 Konsultasi gratis, tanpa komitmen — <a href="#contact">mulai sekarang <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
