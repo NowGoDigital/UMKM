@@ -784,25 +784,18 @@
         }
 
         .portfolio-thumb {
-            height: 240px;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15), transparent 60%),
-                #0d1420;
-            padding: 4px 14px;
-        }
-
-        .portfolio-thumb a {
-            display: block;
-            width: 100%; height: 100%;
-            text-decoration: none;
-        }
+         /* Hapus height: 240px */
+         aspect-ratio: 16 / 9; /* Sesuaikan dengan rasio gambar Anda (bisa 4/3, 3/2, dll) */
+         position: relative;
+         overflow: hidden;
+         background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15), transparent 60%), #0d1420;
+         padding: 4px 14px;
+         }
 
         .portfolio-thumb img {
          width: 100%; 
          height: 100%;
-         object-fit: contain; /* Mengembalikan ke 'contain' agar gambar utuh */
+         object-fit: cover; /* Tetap cover agar full tanpa celah */
          display: block;
          transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
          }
